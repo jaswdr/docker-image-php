@@ -1,2 +1,2 @@
-# docker-image-php
+# PHP Docker Image
 Docker image for PHP development
