@@ -77,12 +77,12 @@ COPY ./nginx/sites-available/* ./
 
 # onfig php-fpm
 WORKDIR /usr/local/etc/
-COPY ./php-fpm/php-fpm.conf .
+COPY ./php-fpm/php-fpm.conf ./
 COPY ./php-fpm/php-fpm.d/*.conf ./php-fpm.d/
 
 # config supervisor
 WORKDIR /etc/supervisor
-COPY ./supervisor/supervisord.conf .
+COPY ./supervisor/supervisord.conf ./
 COPY ./supervisor/conf.d/*.conf ./conf.d/
 
 # create example php file
