@@ -85,6 +85,7 @@ WORKDIR /etc/supervisor
 COPY ./supervisor/supervisord.conf .
 COPY ./supervisor/conf.d/*.conf ./conf.d/
 
+# create example php file
 WORKDIR /var/www/html/
 RUN echo "<?php phpinfo();" > index.php
 
