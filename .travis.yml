@@ -1,7 +1,5 @@
 sudo: required
 
-language: php
-
 services:
   - docker
 
@@ -11,5 +9,5 @@ script:
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push jaschweder/ubuntu-nginx-php;
+    docker push jaschweder/php;
     fi
