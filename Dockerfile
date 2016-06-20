@@ -2,17 +2,17 @@ FROM ubuntu:16.04
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
-LABEL "vendor"="Jonathan A. Schweder"
-LABEL version="1.0"
-LABEL description="basic image for php development and production"
+LABEL vendor="Jonathan A. Schweder <jonathanschweder@gmail.com>"
+LABEL version="1.0.0"
+LABEL description="Basic image for PHP development and production ready with NGINX, PHP-FPM and Supervisord"
 
 # update and upgrade
 RUN apt-get update -y && apt-get upgrade -y
 
 # install build dependencies
 RUN apt-get install --no-install-recommends --no-install-suggests -y \
-						ca-certificates \
-						nginx \
+	    ca-certificates \
+            nginx \
             supervisor \
             git \
             make \
@@ -68,6 +68,9 @@ RUN make install
 # config php
 RUN cp ./php.ini-production /usr/local/php/php.ini
 
+# delete php-src directory
+RUN rm -rf /usr/src/php
+
 # disable cgi path fixing to avoid script injection
 RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php/php.ini
 
@@ -89,9 +92,6 @@ COPY ./supervisor/conf.d/*.conf ./conf.d/
 WORKDIR /var/www/html/
 RUN echo "<?php phpinfo();" > index.php
 
-# delete php-src directory
-RUN rm -rf /usr/src/php
-
 EXPOSE 80 443
 
-CMD supervisord -c /etc/supervisor/supervisord.conf --nodaemon
+CMD ["supervisord","-c","/etc/supervisor/supervisord.conf","--nodaemon"]
