@@ -22,7 +22,7 @@ This will start a container instance with Nginx, PHP-FPM and Supervisord service
 ### Create a Dockerfile in your PHP project
 
 ```
-FROM jaschweder\php:latest
+FROM jaschweder/php:latest
 COPY . /var/www/html
 WORKDIR /var/www/html
 CMD [ "supervisord", "-c", "/etc/supervisor/supervisord.conf", "--nodaemon" ]
