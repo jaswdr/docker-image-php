@@ -10,7 +10,7 @@ LABEL description="Basic image for PHP development and production ready with NGI
 RUN apt-get update -y && apt-get upgrade -y
 
 # install build dependencies
-RUN apt-get install --no-install-recommends --no-install-suggests -y \
+RUN apt-get install \
 	    ca-certificates \
             nginx \
             supervisor \
@@ -24,7 +24,8 @@ RUN apt-get install --no-install-recommends --no-install-suggests -y \
             libmcrypt-dev \
             libpq-dev \
             libcurl4-openssl-dev \
-            pkg-config
+            pkg-config \
+            --no-install-recommends --no-install-suggests -y
 
 # clear apt-get repositories lists
 RUN rm -rf /var/lib/apt/lists/*
