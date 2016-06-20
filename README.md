@@ -1,11 +1,10 @@
 ![PHP](https://raw.githubusercontent.com/docker-library/docs/01c12653951b2fe592c1f93a13b4e289ada0e3a1/php/logo.png)
 
-[![Build Status](https://travis-ci.org/jaschweder/docker-image-php.svg?branch=master)](https://travis-ci.org/jaschweder/docker-image-php)
-
 # Supported tags
 
  - latest
 
+[![Build Status](https://travis-ci.org/jaschweder/docker-image-php.svg?branch=master)](https://travis-ci.org/jaschweder/docker-image-php)
 [![](https://imagelayers.io/badge/jaschweder/php:latest.svg)](https://imagelayers.io/?images=jaschweder/php:latest 'Get your own badge on imagelayers.io')
 
 # What is PHP?
