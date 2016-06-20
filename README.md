@@ -10,7 +10,7 @@
 # What's inside ?
 
  - [Nginx](https://www.nginx.com/) latest stable for webserver and reverse proxy
- - [PHP](https://github.com/php/php-src) 7.1 with php-fpm compiled from branch master
+ - [PHP](https://github.com/php/php-src) with php-fpm compiled from branch master
  - [Supervisord](http://supervisord.org) for process control system
 
 # How to use this image
