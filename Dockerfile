@@ -92,7 +92,9 @@ COPY ./supervisor/conf.d/*.conf ./conf.d/
 
 # create example php file
 WORKDIR /var/www/html/
-RUN echo "<?php phpinfo();" > index.php
+
+# enable volume
+VOLUME /var/www/html
 
 EXPOSE 80 443
 
