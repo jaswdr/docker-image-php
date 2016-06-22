@@ -44,10 +44,8 @@ RUN ./buildconf
 
 # configure php installation with common libs, (if you need php-cli please remove the "--disable-cli" line)
 RUN ./configure \
-    --disable-cli \
     --disable-cgi \
     --disable-short-tags \
-    --enable-intl \
     --enable-fpm \
     --enable-bcmath \
     --enable-mbstring \
