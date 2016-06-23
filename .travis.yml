@@ -4,16 +4,8 @@ services:
   - docker
 
 script:
-<<<<<<< HEAD
-  - docker build -t jaschweder/php:nginx .
-
-after_success:
-    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push jaschweder/php:nginx;
-=======
   - docker build -t jaschweder/php:cli .
 
 after_success:
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push jaschweder/php:cli;
->>>>>>> 33e67b731a43254db305827145367dfc9d065a53
+    docker push jaschweder/php jaschweder/php:cli jaschweder/php:7.1;
