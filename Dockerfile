@@ -1,27 +1,68 @@
-FROM jaschweder/php:fpm
+FROM ubuntu:latest
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
-# config nginx
-WORKDIR /etc/nginx/sites-available
-COPY ./nginx/sites-available/* ./
+# update and upgrade
+RUN apt-get update -y && apt-get upgrade -y
 
-# config php-fpm
-WORKDIR /usr/local/etc/
-COPY ./php-fpm/php-fpm.conf ./
-COPY ./php-fpm/php-fpm.d/*.conf ./php-fpm.d/
+# install build dependencies
+RUN apt-get install \
+	    ca-certificates \
+            git \
+            make \
+            autoconf \
+            build-essential \
+            bison \
+            libxml2-dev \
+            libbz2-dev \
+            libmcrypt-dev \
+            libpq-dev \
+            libcurl4-openssl-dev \
+            pkg-config \
+            --no-install-recommends --no-install-suggests -y
 
-# config supervisor
-WORKDIR /etc/supervisor
-COPY ./supervisor/supervisord.conf ./
-COPY ./supervisor/conf.d/*.conf ./conf.d/
+# clear apt-get repositories lists
+RUN rm -rf /var/lib/apt/lists/*
 
-# create example php file
-WORKDIR /var/www/html/
+# remove unecessary and temporary files
+RUN apt-get autoremove
+RUN apt-get autoclean
 
-# enable volume
-VOLUME /var/www/html
+# clone the php language repository
+RUN git clone --depth 1 -b master git://github.com/php/php-src /usr/src/php
 
-EXPOSE 80 443
+WORKDIR /usr/src/php
 
-ENTRYPOINT ["supervisord","-c","/etc/supervisor/supervisord.conf","--nodaemon"]
+# generate make files
+RUN ./buildconf
+
+# configure php installation with common libs
+RUN ./configure \
+    --disable-cgi \
+    --disable-short-tags \
+    --enable-bcmath \
+    --enable-mbstring \
+    --with-zlib \
+    --with-bz2 \
+    --with-openssl \
+    --with-mcrypt \
+    --with-pdo-mysql \
+    --with-pdo-pgsql \
+    --enable-maintainer-zts
+
+# run make in paralel with (number of processors + 1) threads
+RUN make -j$(($(nproc)+1))
+
+# install php
+RUN make install
+
+# config php
+RUN cp ./php.ini-production /usr/local/php/php.ini
+
+# delete php-src directory
+RUN rm -rf /usr/src/php
+
+# disable cgi path fixing to avoid script injection
+RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php/php.ini
+
+CMD ["php"]
