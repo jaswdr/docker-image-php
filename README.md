@@ -17,14 +17,14 @@
 
 ### With Command Line
 ```
-docker run -d jaschweder/php
+docker run -d jaschweder/php:nginx
 ```
 This will start a container instance with Nginx, PHP-FPM and Supervisord services running, the default website root is ```/var/www/html```.
 
 ### Create a Dockerfile in your PHP project
 
 ```
-FROM jaschweder/php:latest
+FROM jaschweder/php:nginx
 COPY . /var/www/html
 WORKDIR /var/www/html
 CMD [ "supervisord", "-c", "/etc/supervisor/supervisord.conf", "--nodaemon" ]
