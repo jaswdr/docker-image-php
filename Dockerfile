@@ -40,11 +40,8 @@ RUN ./buildconf
 RUN ./configure \
     --disable-cgi \
     --disable-short-tags \
-    --enable-fpm \
     --enable-bcmath \
     --enable-mbstring \
-    --with-fpm-user=www-data \
-    --with-fpm-group=www-data \
     --with-zlib \
     --with-bz2 \
     --with-openssl \
