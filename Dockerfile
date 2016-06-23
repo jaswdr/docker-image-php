@@ -2,18 +2,12 @@ FROM ubuntu:16.04
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
-LABEL vendor="Jonathan A. Schweder <jonathanschweder@gmail.com>"
-LABEL version="1.0.0"
-LABEL description="Basic image for PHP development and production ready with NGINX, PHP-FPM and Supervisord"
-
 # update and upgrade
 RUN apt-get update -y && apt-get upgrade -y
 
 # install build dependencies
 RUN apt-get install \
 	    ca-certificates \
-            nginx \
-            supervisor \
             git \
             make \
             autoconf \
@@ -42,7 +36,7 @@ WORKDIR /usr/src/php
 # generate make files
 RUN ./buildconf
 
-# configure php installation with common libs, (if you need php-cli please remove the "--disable-cli" line)
+# configure php installation with common libs
 RUN ./configure \
     --disable-cgi \
     --disable-short-tags \
@@ -74,26 +68,4 @@ RUN rm -rf /usr/src/php
 # disable cgi path fixing to avoid script injection
 RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php/php.ini
 
-# config nginx
-WORKDIR /etc/nginx/sites-available
-COPY ./nginx/sites-available/* ./
-
-# onfig php-fpm
-WORKDIR /usr/local/etc/
-COPY ./php-fpm/php-fpm.conf ./
-COPY ./php-fpm/php-fpm.d/*.conf ./php-fpm.d/
-
-# config supervisor
-WORKDIR /etc/supervisor
-COPY ./supervisor/supervisord.conf ./
-COPY ./supervisor/conf.d/*.conf ./conf.d/
-
-# create example php file
-WORKDIR /var/www/html/
-
-# enable volume
-VOLUME /var/www/html
-
-EXPOSE 80 443
-
-CMD ["supervisord","-c","/etc/supervisor/supervisord.conf","--nodaemon"]
+CMD ["php"]
