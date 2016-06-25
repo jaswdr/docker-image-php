@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
