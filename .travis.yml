@@ -8,7 +8,4 @@ script:
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-  - docker push jaschweder/php;
-  - docker push jaschweder/php:cli;
-  - docker push jaschweder/php:7.1;
-  - curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $(echo $TRAVIS_TOKEN)" -d "{request": {"branch":"master"}}" https://api.travis-ci.org/repo/jaschweder%2Fdocker-image-php/requests;
+  - docker push jaschweder/php:7.0-bin;
