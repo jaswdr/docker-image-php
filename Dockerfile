@@ -21,7 +21,4 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get autoremove
 RUN apt-get autoclean
 
-# disable cgi path fixing to avoid script injection
-RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php/php.ini
-
 CMD ["php"]
