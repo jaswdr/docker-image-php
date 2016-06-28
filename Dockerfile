@@ -3,16 +3,15 @@ FROM ubuntu:latest
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
 # update and upgrade
-RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get update -y \
+    && apt-get upgrade -y
 
 # install build dependencies
 RUN apt-get install \
-	  ca-certificates \
     php7.0 \
     php7.0-fpm \
-    php7.0-mbstring \
-    php7.0-curl \
-    --no-install-recommends --no-install-suggests -y
+    --no-install-recommends \
+    --no-install-suggests -y
 
 # clear apt-get repositories lists
 RUN rm -rf /var/lib/apt/lists/*
