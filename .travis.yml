@@ -8,4 +8,5 @@ script:
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  - docker push jaschweder/php:latest;
   - docker push jaschweder/php;
