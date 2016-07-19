@@ -20,4 +20,4 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get autoremove
 RUN apt-get autoclean
 
-CMD ["php"]
+CMD ["php", "-v"]
