@@ -9,11 +9,11 @@ RUN apt-get update -y \
 # install build dependencies
 RUN apt-get install \
     ca-certificates \
+    wget \
     git \
     make \
     autoconf \
     build-essential \
-    bison \
     libxml2-dev \
     libbz2-dev \
     libmcrypt-dev \
@@ -27,8 +27,18 @@ RUN apt-get install \
     --no-install-suggests \
     -y
 
+RUN mkdir /usr/src/bison
+
+WORKDIR /usr/src/bison
+
+# install libbison 2.7
+RUN wget http://launchpadlibrarian.net/140087283/libbison-dev_2.7.1.dfsg-1_amd64.deb && \
+    wget http://launchpadlibrarian.net/140087282/bison_2.7.1.dfsg-1_amd64.deb && \
+    dpkg -i libbison-dev_2.7.1.dfsg-1_amd64.deb && \
+    dpkg -i bison_2.7.1.dfsg-1_amd64.deb
+
 # clone the php language repository
-RUN git clone -b master --depth 1 git://github.com/php/php-src /usr/src/php
+RUN git clone -b PHP-5.6 --depth 1 git://github.com/php/php-src /usr/src/php
 
 WORKDIR /usr/src/php
 
@@ -64,13 +74,17 @@ RUN cp ./php.ini-production /usr/local/php/php.ini
 # disable cgi path fixing to avoid script injection
 RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php/php.ini
 
-WORKDIR /var/www
-
 # clear apt-get repositories lists
 RUN rm -rf /var/lib/apt/lists/*
 
 # remove unecessary and temporary files
 RUN apt-get autoremove
 RUN apt-get autoclean
+
+WORKDIR /var/www
+
+VOLUME /var/www
+
+EXPOSE 80
 
 CMD ["php", "-v"]
