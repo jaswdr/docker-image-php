@@ -4,7 +4,7 @@ services:
   - docker
 
 script:
-  - docker build -t jaschweder/php:cli .
+  - docker build -t jaschweder/php .
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
