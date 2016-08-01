@@ -50,7 +50,8 @@ RUN ./configure \
     --with-mcrypt \
     --with-pdo-mysql \
     --with-pdo-pgsql \
-    --with-readline
+    --with-readline \
+    --with-libzip
 
 # run make in paralel with (number of processors + 1) threads
 RUN make -j$(($(nproc)+1))
