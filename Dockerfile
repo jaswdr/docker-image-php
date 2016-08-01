@@ -70,7 +70,7 @@ RUN make -j$(($(nproc)+1))
 RUN make install
 
 # config php
-RUN cp ./php.ini-production /usr/local/php/php.ini
+RUN cp ./php.ini-production /usr/local/php.ini
 
 # disable cgi path fixing to avoid script injection
 RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php/php.ini
