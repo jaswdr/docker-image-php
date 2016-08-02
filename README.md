@@ -2,20 +2,20 @@
 
 # Supported tags
 
- - latest
- - 5.6
+ - [latest](https://github.com/jaschweder/docker-image-php)
+ - [5.6](https://github.com/jaschweder/docker-image-php/tree/5.6)
 
-[![Build Status](https://travis-ci.org/jaschweder/docker-image-php.svg?branch=cli)](https://travis-ci.org/jaschweder/docker-image-php)
+[![Build Status](https://travis-ci.org/jaschweder/docker-image-php.svg?branch=master)](https://travis-ci.org/jaschweder/docker-image-php)
 [![](https://imagelayers.io/badge/jaschweder/php:latest.svg)](https://imagelayers.io/?images=jaschweder/php:latest 'Get your own badge on imagelayers.io')
 
 # What's inside ?
 
- - [PHP](https://github.com/php/php-src) with php-fpm compiled from branch master
+ - [PHP](https://github.com/php/php-src)
 
 # How to use this image
 
 ### With Command Line
 ```
-docker run -it jaschweder/php php -i
+docker run -it jaschweder/php <command>
 ```
 > Created and mantained by Jonathan A. Schweder <jonathanschweder@gmail.com>
