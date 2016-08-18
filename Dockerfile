@@ -19,8 +19,7 @@ RUN apt-get update -y \
 #                                   Nginx                                  #
 ############################################################################
 
-RUN ln -sf /var/log/nginx/access.log /dev/stdout \
-    && ln -sf /var/log/nginx/error.log /dev/stderr
+RUN ln -sf /var/log/nginx/error.log /dev/stderr
 
 COPY ./config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./config/nginx/default /etc/nginx/sites-available/default
