@@ -1,4 +1,4 @@
-FROM jaschweder/php:5.6
+FROM jaschweder/php
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 

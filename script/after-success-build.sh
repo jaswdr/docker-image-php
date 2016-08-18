@@ -4,5 +4,5 @@ curl -s -X POST \
   -H "Accept: application/json" \
   -H "Travis-API-Version: 3" \
   -H "Authorization: token $TRAVIS_TOKEN" \
-  -d "{\"request\":{\"branch\":\"5.6-server\"}}" \
+  -d "{\"request\":{\"branch\":\"server\"}}" \
   https://api.travis-ci.org/repo/jaschweder%2Fdocker-image-php/requests
