@@ -4,8 +4,8 @@ services:
   - docker
 
 script:
-  - docker build -t jaschweder/php:5.6-tools .
+  - docker build -t jaschweder/php:5.6-server .
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-  - docker push jaschweder/php:5.6-tools;
+  - docker push jaschweder/php:5.6-server;
