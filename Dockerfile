@@ -53,6 +53,7 @@ RUN ./configure \
     --enable-mbstring \
     --enable-pcntl \
     --enable-maintainer-zts \
+    --enable-fpm \
     --with-xsl \
     --with-zlib \
     --with-bz2 \
