@@ -9,6 +9,7 @@ RUN apt-get update -y \
 # install build dependencies
 RUN apt-get install \
     ca-certificates \
+    wget \
     git \
     make \
     autoconf \
