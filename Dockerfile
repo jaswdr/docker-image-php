@@ -33,6 +33,8 @@ COPY ./config/php-fpm/php-fpm.conf /usr/local/etc/php-fpm.conf
 
 # Supervisor
 
+COPY ./config/supervisor/supervisord.conf /etc/supervisor/conf.d
+
 # remove unecessary and temporary files
 RUN apt-get autoremove
 RUN apt-get autoclean
@@ -43,4 +45,4 @@ VOLUME /var/www
 
 EXPOSE 80
 
-CMD ["php", "-v"]
+CMD ["supervisord"]
