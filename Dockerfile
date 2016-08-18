@@ -20,7 +20,6 @@ RUN apt-get update -y \
 ############################################################################
 
 RUN ln -sf /var/log/nginx/error.log /dev/stderr
-
 COPY ./config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./config/nginx/default /etc/nginx/sites-available/default
 
@@ -30,6 +29,7 @@ COPY ./index.php /var/www
 #                               PHP-FPM                                    #
 ############################################################################
 
+RUN ln -sf /var/log/php-fpm.log /dev/stderr
 COPY ./config/php-fpm/php-fpm.conf /usr/local/etc/php-fpm.conf
 
 ############################################################################
