@@ -6,8 +6,8 @@ services:
   - docker
 
 env:
-  - IMAGE_FROM=jaschweder\/php IMAGE_TO=jaschweder\/php:tools
-  - IMAGE_FROM=jaschweder\/php:5.6 IMAGE_TO=jaschweder\/php:5.6-tools
+  - IMAGE_FROM='jaschweder\/php' IMAGE_TO=jaschweder/php:tools
+  - IMAGE_FROM='jaschweder\/php:5.6' IMAGE_TO=jaschweder/php:5.6-tools
 
 script:
   - export pattern=s/{IMAGE_FROM}/$IMAGE_FROM/g
