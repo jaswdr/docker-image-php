@@ -1,4 +1,4 @@
-FROM $IMAGE_FROM
+FROM {IMAGE_TO}
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 

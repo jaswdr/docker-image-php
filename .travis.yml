@@ -10,6 +10,8 @@ env:
   - IMAGE_FROM=jaschweder/php:5.6 IMAGE_TO=jaschweder/php:5.6-tools
 
 script:
+  - export pattern=s/{IMAGE_FROM}/$IMAGE_FROM/g
+  - sed $pattern Dockerfile-template > Dockerfile
   - docker build -t $IMAGE_TO .
 
 after_success:
