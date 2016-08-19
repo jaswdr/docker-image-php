@@ -1,0 +1,3 @@
+[submodule "ext/sqlanywhere"]
+	path = ext/sqlanywhere
+	url = https://github.com/jaschweder/sqlanywhere-php-extension
