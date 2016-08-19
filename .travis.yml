@@ -1,11 +1,22 @@
 sudo: required
 
+language: ruby
+
 services:
   - docker
 
+env:
+  - IMAGE_FROM='jaschweder\/php:server' IMAGE_TO=jaschweder/php:laravel DOWNSTREAM=true
+  - IMAGE_FROM='jaschweder\/php:5.6-server' IMAGE_TO=jaschweder/php:5.6-laravel DOWNSTREAM=false
+  - IMAGE_FROM='jaschweder\/php:5.6-sybase-server' IMAGE_TO=jaschweder/php:5.6-sybase-laravel DOWNSTREAM=false
+
 script:
-  - docker build -t jaschweder/php:laravel .
+  - export pattern=s/{IMAGE_FROM}/$IMAGE_FROM/g
+  - sed $pattern Dockerfile-template > Dockerfile
+  - docker build -t $IMAGE_TO .
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-  - docker push jaschweder/php:laravel;
+  - docker push $IMAGE_TO;
+  - chmod a+x ./script/after-success-build.sh
+- ./script/after-success-build.sh;
