@@ -1,10 +1,19 @@
 sudo: required
 
+language: ruby
+
 services:
   - docker
 
+env:
+  - IMAGE_FROM=jaschweder/php:tools IMAGE_TO=jaschweder/php:server DOWNSTREAM=true
+  - IMAGE_FROM=jaschweder/php:5.6-tools IMAGE_TO=jaschweder/php:5.6-server DOWNSTREAM=false
+  - IMAGE_FROM=jaschweder/php:5.6-sybase-tools IMAGE_TO=jaschweder/php:5.6-sybase-server DOWNSTREAM=false
+
 script:
-  - docker build -t jaschweder/php:server .
+  - export pattern=s/{IMAGE_FROM}/$IMAGE_FROM/g
+  - sed $pattern Dockerfile-template > Dockerfile
+  - docker build -t $IMAGE_TO .
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
