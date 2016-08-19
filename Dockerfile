@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:14.04
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
