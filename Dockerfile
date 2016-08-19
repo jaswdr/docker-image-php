@@ -1,4 +1,4 @@
-FROM jaschweder/php
+FROM $IMAGE_FROM
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 

@@ -3,11 +3,19 @@ sudo: required
 services:
   - docker
 
+matrix:
+  include:
+    - IMAGE_FROM=jaschweder/php
+    - IMAGE_TO=jaschweder/php:tools
+  include:
+    - IMAGE_FROM=jaschweder/php:5.6
+    - IMAGE_TO=jaschweder/php:5.6-tools
+
 script:
-  - docker build -t jaschweder/php:tools .
+  - docker build -t $IMAGE_TO .
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-  - docker push jaschweder/php:tools;
+  - docker push $IMAGE_TO;
   - chmod a+x ./script/after-success-build.sh
   - ./script/after-success-build.sh;
