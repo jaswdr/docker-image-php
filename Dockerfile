@@ -69,6 +69,7 @@ RUN cp ./php.ini-production /usr/local/php/php.ini
 RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php/php.ini
 
 WORKDIR /var/www
+VOLUME /var/www
 
 # clear apt-get repositories lists
 RUN rm -rf /var/lib/apt/lists/*
