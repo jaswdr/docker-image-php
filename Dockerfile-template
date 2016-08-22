@@ -10,8 +10,4 @@ RUN wget "https://getcomposer.org/composer.phar" \
 
 WORKDIR /var/www
 
-VOLUME /var/www
-
-EXPOSE 80
-
 CMD ["composer", "--version"]
