@@ -89,6 +89,6 @@ WORKDIR /var/www
 
 VOLUME /var/www
 
-EXPOSE 80
+EXPOSE 80 443
 
 CMD ["php", "-v"]
