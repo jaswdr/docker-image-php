@@ -68,14 +68,17 @@ RUN cp ./php.ini-production /usr/local/php/php.ini
 # disable cgi path fixing to avoid script injection
 RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php/php.ini
 
-WORKDIR /var/www
-VOLUME /var/www
-
 # clear apt-get repositories lists
 RUN rm -rf /var/lib/apt/lists/*
 
 # remove unecessary and temporary files
 RUN apt-get autoremove
 RUN apt-get autoclean
+
+WORKDIR /var/www
+
+VOLUME /var/www
+
+EXPOSE 80
 
 CMD ["php", "-v"]
