@@ -49,10 +49,4 @@ RUN rm -rf /var/lib/apt/lists/* \
 #                               GENERAL                                    #
 ############################################################################
 
-WORKDIR /var/www
-
-VOLUME /var/www
-
-EXPOSE 80 443
-
 CMD ["supervisord"]
