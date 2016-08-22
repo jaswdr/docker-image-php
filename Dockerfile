@@ -27,3 +27,5 @@ RUN wget http://d5d4ifzqzkhwt.cloudfront.net/sqla16client/sqla16_client_linux_x8
     -regkey $SYBASE_KEY
 
 ENV LD_LIBRARY_PATH=/opt/sqlanywhere16/lib64
+
+WORKDIR /var/www
