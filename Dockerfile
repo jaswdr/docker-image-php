@@ -62,6 +62,7 @@ RUN ./configure \
     --with-pdo-mysql \
     --with-pdo-pgsql \
     --with-readline \
+    --with-curl \
     --with-libzip
 
 # run make in paralel with (number of processors + 1) threads
