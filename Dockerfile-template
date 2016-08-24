@@ -10,6 +10,6 @@ COPY ./nginx-vh-default /etc/nginx/sites-available/default
 
 RUN rm -rf /var/www/* \
     && composer create-project laravel/laravel \
-    --prefer-dist \
+    --prefer-source \
     --no-interaction \
     --working-dir=/var www
