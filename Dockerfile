@@ -2,11 +2,9 @@ FROM ubuntu:14.04
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
-# update and upgrade
 RUN apt-get update -y \
     && apt-get upgrade -y
 
-# install build dependencies
 RUN apt-get install \
     ca-certificates \
     wget \
@@ -32,21 +30,17 @@ RUN mkdir /usr/src/bison
 
 WORKDIR /usr/src/bison
 
-# install libbison 2.7
 RUN wget http://launchpadlibrarian.net/140087283/libbison-dev_2.7.1.dfsg-1_amd64.deb && \
     wget http://launchpadlibrarian.net/140087282/bison_2.7.1.dfsg-1_amd64.deb && \
     dpkg -i libbison-dev_2.7.1.dfsg-1_amd64.deb && \
     dpkg -i bison_2.7.1.dfsg-1_amd64.deb
 
-# clone the php language repository
 RUN git clone -b PHP-5.6 --depth 1 git://github.com/php/php-src /usr/src/php
 
 WORKDIR /usr/src/php
 
-# generate build files
 RUN ./buildconf
 
-# configure php installation with common libs
 RUN ./configure \
     --disable-cgi \
     --disable-short-tags \
@@ -67,25 +61,14 @@ RUN ./configure \
     --with-curl \
     --with-libzip
 
-# run make in paralel with (number of processors + 1) threads
-RUN make -j$(($(nproc)+1))
-
-# install php
-RUN make install
-
-# config php
-RUN cp ./php.ini-production /usr/local/php.ini
-
-# disable cgi path fixing to avoid script injection
-RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php.ini \
-    && echo "date.timezone = America/Sao_Paulo" >>  /usr/local/php.ini
-
-# clear apt-get repositories lists
-RUN rm -rf /var/lib/apt/lists/*
-
-# remove unecessary and temporary files
-RUN apt-get autoremove
-RUN apt-get autoclean
+RUN make -j$(($(nproc)+1)) \
+    && make install \
+    && cp ./php.ini-production /usr/local/php.ini \
+    && echo "cgi.fix_pathinfo=0" >> /usr/local/php.ini \
+    && echo "date.timezone = America/Sao_Paulo" >>  /usr/local/php.ini \
+    && rm -rf /var/lib/apt/lists/* /usr/src/* \
+    && apt-get autoremove \
+    && apt-get autoclean
 
 WORKDIR /var/www
 
