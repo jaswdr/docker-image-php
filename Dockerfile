@@ -64,6 +64,7 @@ RUN ./configure \
     --with-pdo-mysql \
     --with-pdo-pgsql \
     --with-readline \
+    --with-curl \
     --with-libzip
 
 # run make in paralel with (number of processors + 1) threads
@@ -90,6 +91,6 @@ WORKDIR /var/www
 
 VOLUME /var/www
 
-EXPOSE 80
+EXPOSE 80 443
 
 CMD ["php", "-v"]
