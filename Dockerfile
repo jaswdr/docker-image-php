@@ -22,6 +22,7 @@ RUN apt-get install \
     libedit-dev \
     libreadline-dev \
     libxslt-dev \
+    libzip-dev \
     pkg-config \
     --no-install-recommends \
     --no-install-suggests \
@@ -54,6 +55,7 @@ RUN ./configure \
     --enable-pcntl \
     --enable-maintainer-zts \
     --enable-fpm \
+    --with-zlib \
     --with-xsl \
     --with-zlib \
     --with-bz2 \
