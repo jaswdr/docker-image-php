@@ -3,10 +3,11 @@ server {
 	listen [::]:80 default_server;
 
 	root /var/www/public;
-    sendfile off;
+
+    sendfile on;
     charset utf-8;
-	index index.php;
-	server_name _;
+    index index.php;
+    server_name localhost;
 
 	location / {
 		try_files $uri $uri/ /index.php$is_args$args;
@@ -17,12 +18,4 @@ server {
 		fastcgi_pass unix:/run/php-fpm.sock;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 	}
-
-	location ~ /\.ht {
-		deny all;
-	}
-
-    location ~* .(jpg|jpeg|png|gif|ico|css|js)$ {
-        expires 365d;
-    }
 }
