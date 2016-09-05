@@ -55,7 +55,9 @@ RUN ./configure \
     --with-bz2 \
     --with-openssl \
     --with-mcrypt \
+    --with-mysqli \
     --with-pdo-mysql \
+    --with-pgsql \
     --with-pdo-pgsql \
     --with-readline \
     --with-curl \
