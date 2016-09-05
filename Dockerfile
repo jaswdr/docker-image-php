@@ -49,6 +49,7 @@ RUN ./configure \
     --enable-pcntl \
     --enable-maintainer-zts \
     --enable-fpm \
+    --enable-soap \
     --with-zlib \
     --with-xsl \
     --with-zlib \
