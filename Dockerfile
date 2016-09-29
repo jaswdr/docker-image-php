@@ -71,7 +71,7 @@ RUN make install
 RUN cp ./php.ini-production /usr/local/php.ini
 
 # disable cgi path fixing to avoid script injection
-RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php/php.ini
+RUN echo "cgi.fix_pathinfo=0" >> /usr/local/php.ini
 
 # clear apt-get repositories lists
 RUN rm -rf /var/lib/apt/lists/*
