@@ -20,12 +20,11 @@ RUN apt-get install \
     libedit-dev \
     libreadline-dev \
     libxslt-dev \
-    libzip-dev \
     pkg-config \
     --no-install-recommends \
     --no-install-suggests \
     -y
-
+    
 RUN mkdir /usr/src/bison
 
 WORKDIR /usr/src/bison
@@ -49,13 +48,17 @@ RUN ./configure \
     --enable-pcntl \
     --enable-maintainer-zts \
     --enable-fpm \
+    --enable-soap \
+    --enable-libxml \
     --with-zlib \
     --with-xsl \
     --with-zlib \
     --with-bz2 \
     --with-openssl \
     --with-mcrypt \
+    --with-mysqli \
     --with-pdo-mysql \
+    --with-pgsql \
     --with-pdo-pgsql \
     --with-readline \
     --with-curl \
@@ -63,9 +66,9 @@ RUN ./configure \
 
 RUN make -j$(($(nproc)+1)) \
     && make install \
-    && cp ./php.ini-production /usr/local/lib/php.ini \
+    && cp ./php.ini-production/usr/local/lib/php.ini \
     && echo "cgi.fix_pathinfo=0" >> /usr/local/lib/php.ini \
-    && echo "date.timezone = America/Sao_Paulo" >>  /usr/local/lib/php.ini \
+    && echo "date.timezone = America/Sao_Paulo" >>  /usr/local/php.ini \
     && rm -rf /var/lib/apt/lists/* /usr/src/* \
     && apt-get autoremove \
     && apt-get autoclean
