@@ -20,12 +20,11 @@ RUN apt-get install \
     libedit-dev \
     libreadline-dev \
     libxslt-dev \
-    libzip-dev \
     pkg-config \
     --no-install-recommends \
     --no-install-suggests \
     -y
-
+    
 RUN mkdir /usr/src/bison
 
 WORKDIR /usr/src/bison
@@ -50,6 +49,7 @@ RUN ./configure \
     --enable-maintainer-zts \
     --enable-fpm \
     --enable-soap \
+    --enable-libxml \
     --with-zlib \
     --with-xsl \
     --with-zlib \
