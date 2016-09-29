@@ -66,7 +66,7 @@ RUN ./configure \
 
 RUN make -j$(($(nproc)+1)) \
     && make install \
-    && cp ./php.ini-production/usr/local/lib/php.ini \
+    && cp ./php.ini-production /usr/local/lib/php.ini \
     && echo "cgi.fix_pathinfo=0" >> /usr/local/lib/php.ini \
     && echo "date.timezone = America/Sao_Paulo" >>  /usr/local/php.ini \
     && rm -rf /var/lib/apt/lists/* /usr/src/* \
