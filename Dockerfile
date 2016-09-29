@@ -66,6 +66,7 @@ RUN ./configure \
 
 RUN make -j$(($(nproc)+1)) \
     && make install \
+    && pecl install mongodb \
     && cp ./php.ini-production /usr/local/php.ini \
     && echo "cgi.fix_pathinfo=0" >> /usr/local/php.ini \
     && echo "date.timezone = America/Sao_Paulo" >>  /usr/local/php.ini \
