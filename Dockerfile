@@ -58,9 +58,10 @@ RUN ./configure \
 
 RUN make -j$(($(nproc)+1)) \
     && make install \
+    && cp ./php.ini-production /usr/local/lib/php.ini \
     && pecl install mongodb \
-    && cp ./php.ini-production /usr/local/php.ini \
-    && echo "cgi.fix_pathinfo=0" >> /usr/local/php.ini \
+    && echo "extension=mongodb.so" >> /usr/local/lib/php.ini \
+    && echo "cgi.fix_pathinfo=0" >> /usr/local/lib/php.ini \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get autoremove \
     && apt-get autoclean
