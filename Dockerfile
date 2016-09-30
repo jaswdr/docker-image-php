@@ -42,6 +42,7 @@ RUN ./configure \
     --enable-fpm \
     --enable-soap \
     --enable-libxml \
+    --enable-zip \
     --with-zlib \
     --with-xsl \
     --with-zlib \
