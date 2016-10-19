@@ -21,6 +21,7 @@ RUN apt-get install \
     libedit-dev \
     libreadline-dev \
     libxslt-dev \
+    libzip-dev \
     pkg-config \
     --no-install-recommends \
     --no-install-suggests \
