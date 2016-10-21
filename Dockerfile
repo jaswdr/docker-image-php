@@ -32,4 +32,9 @@ RUN apt-get install unzip -y  \
     && echo "extension=/usr/src/Ubuntu16/php_pdo_sqlsrv_7_ts.so" >> /usr/local/lib/php.ini \
     && echo "extension=/usr/src/Ubuntu16/php_sqlsrv_7_ts.so" >> /usr/local/lib/php.ini
 
+# generate UTF8 locales (#161)
+RUN apt-get install -y locales \
+    && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+    && locale-gen
+
 WORKDIR /var/www
