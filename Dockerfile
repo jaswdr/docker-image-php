@@ -59,10 +59,15 @@ RUN ./configure \
     --with-libzip
 
 RUN make -j$(($(nproc)+1)) \
-    && make install \
-    && cp ./php.ini-production /usr/local/lib/php.ini \
-    && echo "cgi.fix_pathinfo=0" >> /usr/local/lib/php.ini \
-    && rm -rf /var/lib/apt/lists/* \
+    && make install
+
+RUN cp ./php.ini-production /usr/local/lib/php.ini \
+    && echo "cgi.fix_pathinfo=0" >> /usr/local/lib/php.ini
+
+RUN pecl install redis \
+    && echo "extension=redis.so" >> /usr/local/lib/php.ini
+
+RUN rm -rf /var/lib/apt/lists/* \
     && apt-get autoremove \
     && apt-get autoclean
 
