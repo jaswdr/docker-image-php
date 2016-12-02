@@ -20,6 +20,7 @@ RUN apt-get install \
     libedit-dev \
     libreadline-dev \
     libxslt-dev \
+    libpng12-dev \
     pkg-config \
     --no-install-recommends \
     --no-install-suggests \
