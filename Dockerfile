@@ -13,6 +13,7 @@ RUN apt-get install \
     autoconf \
     build-essential \
     bison \
+    unzip \
     libxml2-dev \
     libbz2-dev \
     libmcrypt-dev \
