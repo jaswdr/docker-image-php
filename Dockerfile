@@ -22,6 +22,7 @@ RUN apt-get install \
     libreadline-dev \
     libxslt-dev \
     libzip-dev \
+    libpng12-dev \
     pkg-config \
     --no-install-recommends \
     --no-install-suggests \
