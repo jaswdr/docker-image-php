@@ -56,7 +56,8 @@ RUN ./configure \
     --with-pdo-pgsql \
     --with-readline \
     --with-curl \
-    --with-libzip
+    --with-libzip \
+    --with-gd
 
 RUN make -j$(($(nproc)+1)) \
     && make install
