@@ -8,6 +8,7 @@ RUN apt-get update -y \
 RUN apt-get install \
     ca-certificates \
     wget \
+    unzip \
     git \
     make \
     autoconf \
