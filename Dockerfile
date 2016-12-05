@@ -2,17 +2,17 @@ FROM jaschweder/php:5.6
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
-# install extensions
-COPY ./ext /usr/src/ext
+WORKDIR /usr/src/ext
 
-# install sqlanywhere
-WORKDIR /usr/src/ext/sqlanywhere
-RUN echo $PWD \
+RUN git clone -b master --depth 1 https://github.com/jaschweder/sqlanywhere-php-extension sqlanywhere \
+    && cd sqlanywhere \
     && phpize \
     && ./configure \
     && make -j$(($(nproc)+1)) \
     && make install \
-    && echo 'extension=sqlanywhere.so' >> /usr/local/lib/php.ini
+    && rm -rf sqlanywhere
+
+RUN echo 'extension=sqlanywhere.so' >> /usr/local/lib/php.ini
 
 ARG SYBASE_KEY=''
 
