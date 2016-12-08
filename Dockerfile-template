@@ -6,7 +6,10 @@ WORKDIR /usr/src
 
 RUN wget "https://getcomposer.org/composer.phar" \
     && mv ./composer.phar /usr/local/bin/composer \
-    && chmod a+x /usr/local/bin/composer
+    && chmod a+x /usr/local/bin/composer \
+    && composer global require jaschweder/tools
+
+ENV PATH "$PATH:/root/.composer/vendor/bin"
 
 WORKDIR /var/www
 
