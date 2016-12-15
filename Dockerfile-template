@@ -7,3 +7,5 @@ MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 ############################################################################
 
 COPY ./nginx-vh-default /etc/nginx/sites-available/default
+
+COPY ./queue-worker.conf /etc/supervisor/conf.d/queue-worker.conf
