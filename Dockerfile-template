@@ -29,7 +29,6 @@ RUN apt-get update -y \
     && apt-get autoremove \
     && apt-get autoclean \
     && echo '* * * * * php /var/www/artisan schedule:run >> /dev/null 2>&1' > /etc/cron.d/schedule \
-    && crontab /etc/cron.d/schedule \
     && chmod 0600 /etc/cron.d/schedule
 
 COPY ./schedule.conf /etc/supervisor/conf.d/schedule.conf
