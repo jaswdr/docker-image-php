@@ -30,7 +30,7 @@ RUN apt-get install \
     --no-install-suggests \
     -y
 
-RUN git clone -b PHP-7.0 --depth 1 git://github.com/php/php-src /usr/src/php
+RUN git clone -b PHP-7.1 --depth 1 git://github.com/php/php-src /usr/src/php
 
 WORKDIR /usr/src/php
 
