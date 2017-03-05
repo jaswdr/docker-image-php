@@ -12,6 +12,7 @@ RUN apt-get install \
     git \
     make \
     autoconf \
+    ssh \
     build-essential \
     libxml2-dev \
     libbz2-dev \
