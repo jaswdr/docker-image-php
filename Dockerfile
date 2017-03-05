@@ -14,6 +14,7 @@ RUN apt-get install \
     build-essential \
     bison \
     unzip \
+    ssh \
     libxml2-dev \
     libbz2-dev \
     libmcrypt-dev \
