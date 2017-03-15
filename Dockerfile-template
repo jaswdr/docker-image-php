@@ -2,20 +2,8 @@ FROM {IMAGE_FROM}
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
-############################################################################
-#                                   Nginx                                  #
-############################################################################
+RUN composer global require phpstan/phpstan
 
-COPY ./nginx-vh-default /etc/nginx/sites-available/default
+COPY ./generate_metrics /usr/local/bin/generate_metrics
 
-############################################################################
-#                                   Queue                                  #
-############################################################################
-
-COPY ./queue-worker.conf /etc/supervisor/conf.d/queue-worker.conf
-
-############################################################################
-#                                Schedule                                  #
-############################################################################
-
-COPY ./schedule.conf /etc/supervisor/conf.d/schedule.conf
+CMD ["generate_metrics", "/var/www"]

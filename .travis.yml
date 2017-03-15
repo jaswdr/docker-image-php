@@ -6,10 +6,7 @@ services:
   - docker
 
 env:
-  - IMAGE_FROM='jaschweder\/php:server' IMAGE_TO=jaschweder/php:laravel DOWNSTREAM=true
-  - IMAGE_FROM='jaschweder\/php:sqlsrv-server' IMAGE_TO=jaschweder/php:sqlsrv-laravel DOWNSTREAM=true
-  - IMAGE_FROM='jaschweder\/php:5.6-server' IMAGE_TO=jaschweder/php:5.6-laravel DOWNSTREAM=false
-  - IMAGE_FROM='jaschweder\/php:5.6-sybase-server' IMAGE_TO=jaschweder/php:5.6-sybase-laravel DOWNSTREAM=false
+  - IMAGE_FROM='jaschweder\/php:tools' IMAGE_TO=jaschweder/php:metrics
 
 script:
   - sed -e s/{IMAGE_FROM}/$IMAGE_FROM/g Dockerfile-template > Dockerfile

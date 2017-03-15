@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# generate phpstan analysis
+phpstan analyse $1
