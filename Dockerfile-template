@@ -6,4 +6,4 @@ RUN composer global require edgedesign/phpqa --update-no-dev
 
 ENTRYPOINT ["phpqa"]
 
-CMD ["--analyzeDirs", "./", "--buildDir", "./build", "--ignoredDirs", "bootstrap,config,database,public,resources,routes,storage,tests,vendor", "--verbose", "--report"]
+CMD ["--analyzedDirs", "./", "--buildDir", "./build", "--ignoredDirs", "bootstrap,config,database,public,resources,routes,storage,tests,vendor", "--verbose", "--report"]
