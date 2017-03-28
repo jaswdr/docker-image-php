@@ -2,8 +2,8 @@ FROM {IMAGE_FROM}
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
-RUN composer global require phpstan/phpstan
+RUN composer global require edgedesign/phpqa --update-no-dev
 
-COPY ./generate_metrics /usr/local/bin/generate_metrics
+ENTRYPOINT ["phpqa"]
 
-CMD ["generate_metrics", "/var/www"]
+CMD ["--analyzeDirs", "./", "--buildDir", "./build", "--ignoredDirs", "bootstrap,config,database,public,resources,routes,storage,tests,vendor", "--verbose", "--report"]
