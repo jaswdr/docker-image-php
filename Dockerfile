@@ -9,6 +9,7 @@ RUN apt-get install \
     ca-certificates \
     wget \
     git \
+    mercurial \
     make \
     autoconf \
     build-essential \
