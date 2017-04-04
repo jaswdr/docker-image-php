@@ -10,6 +10,7 @@ RUN apt-get install \
     wget \
     unzip \
     git \
+    mercurial \
     make \
     autoconf \
     ssh \
