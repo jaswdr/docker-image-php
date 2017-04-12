@@ -25,14 +25,12 @@ RUN apt-get update -y \
 
 WORKDIR /usr/src
 
-# install M$ SQL Server driver
 RUN apt-get install unzip -y  \
     && wget https://github.com/Microsoft/msphpsql/releases/download/v4.0.5-Linux/Ubuntu16.zip \
     && unzip Ubuntu16.zip \
     && echo "extension=/usr/src/Ubuntu16/php_pdo_sqlsrv_7_ts.so" >> /usr/local/lib/php.ini \
     && echo "extension=/usr/src/Ubuntu16/php_sqlsrv_7_ts.so" >> /usr/local/lib/php.ini
 
-# generate UTF8 locales (#161)
 RUN apt-get install -y locales \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
     && locale-gen
