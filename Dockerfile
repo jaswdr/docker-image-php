@@ -2,10 +2,8 @@ FROM jaschweder/php
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
-# install sqlsrv
 WORKDIR /usr/src
 
-# install unixODBC
 RUN apt-get update -y \
     && apt-get install libssl1.0.0 libgss3 g++-5 -y  \
     && wget http://www.unixodbc.org/unixODBC-2.3.1.tar.gz \
