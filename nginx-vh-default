@@ -8,6 +8,7 @@ server {
     charset utf-8;
     index index.php;
     server_name localhost;
+    client_max_body_size 50M;
 
 	location / {
 		try_files $uri $uri/ /index.php$is_args$args;
