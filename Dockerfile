@@ -25,6 +25,7 @@ RUN apt-get install \
     libxslt-dev \
     libpng12-dev \
     pkg-config \
+    iputils-ping \
     --no-install-recommends \
     --no-install-suggests \
     -y
