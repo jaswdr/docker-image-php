@@ -3,19 +3,18 @@ FROM {IMAGE_FROM}
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
 ############################################################################
-#                                   Nginx                                  #
+#                                 ffmpeg                                   #
 ############################################################################
 
-COPY ./nginx-vh-default /etc/nginx/sites-available/default
-
-############################################################################
-#                                   Queue                                  #
-############################################################################
-
-COPY ./queue-worker.conf /etc/supervisor/conf.d/queue-worker.conf
-
-############################################################################
-#                                Schedule                                  #
-############################################################################
-
-COPY ./schedule.conf /etc/supervisor/conf.d/schedule.conf
+RUN mkdir -p /usr/src \
+    && cd /usr/src \
+    && git clone -b n3.2.7 --depth 1 --single-branch https://github.com/ffmpeg/ffmpeg \
+    && cd ffmpeg \
+    && ./configure \
+    --enable-libmp3lame \
+    --enable-gpl \
+    --enable-libx264 \
+    --enable-shared \
+    --disable-static \
+    && make all -j$(nproc) \
+    && make install
