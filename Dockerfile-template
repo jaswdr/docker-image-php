@@ -6,6 +6,10 @@ MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 #                                 ffmpeg                                   #
 ############################################################################
 
+RUN apt-get update -y \
+    && apt-get install \
+    yasm
+
 RUN mkdir -p /usr/src \
     && cd /usr/src \
     && git clone -b n3.2.7 --depth 1 --single-branch https://github.com/ffmpeg/ffmpeg \
