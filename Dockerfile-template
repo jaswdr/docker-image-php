@@ -10,6 +10,7 @@ RUN apt-get update -y \
     && apt-get install \
     yasm \
     libmp3lame-dev \
+    libx264-dev \
     -y
 
 RUN mkdir -p /usr/src \
