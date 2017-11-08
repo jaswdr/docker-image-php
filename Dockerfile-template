@@ -8,7 +8,8 @@ MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
 RUN apt-get update -y \
     && apt-get install \
-    yasm
+    yasm \
+    libmp3lame-dev
 
 RUN mkdir -p /usr/src \
     && cd /usr/src \
