@@ -2,7 +2,23 @@ FROM {IMAGE_FROM}
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
-
+RUN apt-get update -y \
+    && apt-get install \
+    yasm \
+    libmp3lame-dev \
+    libx264-dev \
+    git \
+    build-essential \
+    cmake \
+    pkg-config \
+    libusb-dev \
+    libasound2-dev \
+    alsa-utils \
+    alsa \
+    alsa-oss \
+    curl \
+    -y
+    
 ############################################################################
 #                                  node                                    #
 ############################################################################
@@ -18,23 +34,6 @@ RUN npm install -g gulp@3.6.0
 ############################################################################
 #                                 ffmpeg                                   #
 ############################################################################
-
-RUN apt-get update -y \
-    && apt-get install \
-    yasm \
-    libmp3lame-dev \
-    libx264-dev \
-    git \
-    build-essential \
-    cmake \
-    pkg-config \
-    libusb-dev \
-    libasound2-dev \
-    alsa-utils \
-    alsa \
-    alsa-oss \
-    curl
-    -y
 
 RUN mkdir -p /usr/src \
     && cd /usr/src \
