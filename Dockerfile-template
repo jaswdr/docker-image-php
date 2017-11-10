@@ -2,6 +2,19 @@ FROM {IMAGE_FROM}
 
 MAINTAINER Jonathan A. Schweder "jonathanschweder@gmail.com"
 
+
+############################################################################
+#                                  node                                    #
+############################################################################
+RUN git clone -b v6.x --depth 1  https://github.com/nodejs/node /usr/src/node \
+    && cd /usr/src/node \
+    && ./configure \
+    && make -j$(nproc) \
+    && make install \
+    && rm -rf /usr/src/node
+    
+RUN npm install -g gulp@3.6.0
+
 ############################################################################
 #                                 ffmpeg                                   #
 ############################################################################
@@ -11,6 +24,16 @@ RUN apt-get update -y \
     yasm \
     libmp3lame-dev \
     libx264-dev \
+    git \
+    build-essential \
+    cmake \
+    pkg-config \
+    libusb-dev \
+    libasound2-dev \
+    alsa-utils \
+    alsa \
+    alsa-oss \
+    curl
     -y
 
 RUN mkdir -p /usr/src \
@@ -25,3 +48,8 @@ RUN mkdir -p /usr/src \
     --disable-static \
     && make all -j$(nproc) \
     && make install
+
+ENV PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+
+WORKDIR /usr/share/nginx/htm
