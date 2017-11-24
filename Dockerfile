@@ -11,6 +11,7 @@ RUN apt-get install \
     unzip \
     git \
     mercurial \
+    zip \
     make \
     autoconf \
     ssh \
