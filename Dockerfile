@@ -10,6 +10,7 @@ RUN apt-get install \
     wget \
     git \
     mercurial \
+    zip \
     make \
     autoconf \
     build-essential \
