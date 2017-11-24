@@ -30,7 +30,7 @@ RUN git clone -b v6.x --depth 1  https://github.com/nodejs/node /usr/src/node \
     && make install \
     && rm -rf /usr/src/node
     
-RUN npm install -g gulp@3.6.0
+RUN npm install -g gulp
 
 ############################################################################
 #                                 ffmpeg                                   #
