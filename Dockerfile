@@ -25,12 +25,13 @@ RUN apt-get install \
     libreadline-dev \
     libxslt-dev \
     libpng12-dev \
+    libjpeg-dev \
     pkg-config \
     iputils-ping \
     --no-install-recommends \
     --no-install-suggests \
     -y
-    
+
 RUN mkdir /usr/src/bison
 
 WORKDIR /usr/src/bison
@@ -69,7 +70,8 @@ RUN ./configure \
     --with-readline \
     --with-curl \
     --with-libzip \
-    --with-gd
+    --with-gd \
+    --with-jpeg-dir
 
 RUN make -j$(($(nproc)+1)) \
     && make install \
