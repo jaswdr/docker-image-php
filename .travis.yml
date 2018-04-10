@@ -8,6 +8,7 @@ services:
 env:
   - IMAGE_FROM='jaschweder\/php:tools' IMAGE_TO=jaschweder/php:server DOWNSTREAM=true
   - IMAGE_FROM='jaschweder\/php:7.1-tools' IMAGE_TO=jaschweder/php:7.1-server DOWNSTREAM=true
+  - IMAGE_FROM='jaschweder\/php:7.2-tools' IMAGE_TO=jaschweder/php:7.2-server DOWNSTREAM=true
   - IMAGE_FROM='jaschweder\/php:sqlsrv-tools' IMAGE_TO=jaschweder/php:sqlsrv-server DOWNSTREAM=true
   - IMAGE_FROM='jaschweder\/php:5.6-tools' IMAGE_TO=jaschweder/php:5.6-server DOWNSTREAM=false
   - IMAGE_FROM='jaschweder\/php:5.6-sybase-tools' IMAGE_TO=jaschweder/php:5.6-sybase-server DOWNSTREAM=false
