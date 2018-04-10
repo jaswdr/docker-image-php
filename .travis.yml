@@ -19,7 +19,7 @@ script:
   - docker build -t $IMAGE_TO .
 
 after_success:
-  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   - docker push $IMAGE_TO;
   - chmod a+x ./script/after-success-build.sh
   - ./script/after-success-build.sh;
