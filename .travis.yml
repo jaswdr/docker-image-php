@@ -7,7 +7,12 @@ services:
 
 env:
   - IMAGE_FROM='jaschweder\/php:laravel' IMAGE_TO=jaschweder/php:laravel-ffmpeg DOWNSTREAM=false
+  - IMAGE_FROM='jaschweder\/php:7.0-laravel' IMAGE_TO=jaschweder/php:7.0-laravel-ffmpeg DOWNSTREAM=false
+  - IMAGE_FROM='jaschweder\/php:7.1-laravel' IMAGE_TO=jaschweder/php:7.1-laravel-ffmpeg DOWNSTREAM=false
+  - IMAGE_FROM='jaschweder\/php:7.2-laravel' IMAGE_TO=jaschweder/php:7.2-laravel-ffmpeg DOWNSTREAM=false
   - IMAGE_FROM='jaschweder\/php:5.6-laravel' IMAGE_TO=jaschweder/php:5.6-laravel-ffmpeg DOWNSTREAM=false
+  - IMAGE_FROM='jaschweder\/php:5.6-sybase-laravel' IMAGE_TO=jaschweder/php:5.6-sybase-laravel-ffmpeg DOWNSTREAM=false
+  - IMAGE_FROM='jaschweder\/php:5.6-sqlsrv-laravel' IMAGE_TO=jaschweder/php:5.6-sqlsrv-laravel-ffmpeg DOWNSTREAM=false
 
 script:
   - sed -e s/{IMAGE_FROM}/$IMAGE_FROM/g Dockerfile-template > Dockerfile
